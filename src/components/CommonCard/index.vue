@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../assets/styles/base.scss";
 .common-card {
   .title {
     font-size: 12px;
@@ -53,6 +54,25 @@ export default {
   .total {
     color: #666;
     font-size: 12px;
+  }
+  .emphasis {
+    margin-left: 5px;
+    color: $gray1;
+    font-weight: 700;
+  }
+  .icon {
+    width: 0;
+    height: 0;
+    border-width: 3px;
+    border-style: solid;
+    &.increase {
+      margin: 0 0 3px 5px;
+      border-color: transparent transparent red transparent;
+    }
+    &.decrease {
+      margin: 3px 0 0 5px;
+      border-color: green transparent transparent transparent;
+    }
   }
 }
 </style>

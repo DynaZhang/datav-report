@@ -33,6 +33,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../assets/styles/base.scss";
+@import "../../assets/styles/mixin.scss";
 .compare-wrapper {
   height: 100%;
   display: flex;
@@ -41,28 +43,9 @@ export default {
   .compare {
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: $font-size4;
     margin-top: 3px;
-    color: #666;
-    .icon {
-      width: 0;
-      height: 0;
-      border-width: 3px;
-      border-style: solid;
-      &.increase {
-        margin: 0 0 3px 5px;
-        border-color: transparent transparent red transparent;
-      }
-      &.decrease {
-        margin: 3px 0 0 5px;
-        border-color: green transparent transparent transparent;
-      }
-    }
+    color: $gray2;
   }
-}
-.emphasis {
-  margin-left: 5px;
-  color: #333;
-  font-weight: 700;
 }
 </style>
