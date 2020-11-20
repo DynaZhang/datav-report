@@ -16,7 +16,7 @@ export default {
   data () {
     return {
       chartOption: {
-        color: ['#3398BD'],
+        color: ['#3398DB'],
         legend: {
           data: ['bar']
         },
