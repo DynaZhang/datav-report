@@ -9,6 +9,7 @@ import VueEcharts from 'vue-echarts'
 import './assets/styles/common.scss'
 
 Vue.prototype.$echarts = Echarts
+Vue.prototype.$bmap = window.BMapGL
 
 Vue.component('v-chart', VueEcharts)
 

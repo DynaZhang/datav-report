@@ -128,7 +128,9 @@ export default {
           }
         ],
         tooltip: {
-          formatter: '{b0}<br />{a0}: {c0}'
+          formatter: (params) => {
+            return `${params.seriesName}<br />${params.marker}${params.name}:${params.value}`
+          }
         },
         grid: {
           top: 70,

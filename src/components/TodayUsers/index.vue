@@ -42,7 +42,9 @@ export default {
           left: 0
         },
         tooltip: {
-          formatter: '{b0}<br />直接访问: {c0}'
+          formatter: (params) => {
+            return `${params.seriesName}<br />${params.marker}${params.name}:${params.value}`
+          }
         }
       }
     }
