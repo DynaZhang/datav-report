@@ -403,8 +403,6 @@ const convertData = function(data) {
   return res
 }
 
-
-
 export default {
   name: 'BMap',
   data() {
@@ -1478,7 +1476,7 @@ export default {
           coordinateSystem: 'bmap',
           data: convertData(data.sort(function(a, b) {
             return b.value - a.value
-          }).slice(0, 6)),
+          }).slice(0, 9)),
           symbolSize: function(val) {
             return val[2] / 10
           },

@@ -18,6 +18,11 @@ const router = new VueRouter({
       path: '/b-map',
       name: 'BMap',
       component: () =>  import('../views/BMap')
+    },
+    {
+      path: '/b-map2',
+      name: 'BMap2',
+      component: () =>  import('../views/BMap2')
     }
   ]
 })
