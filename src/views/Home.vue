@@ -12,10 +12,48 @@ import TopView from '../components/TopView/index'
 import SalesView from '../components/SalesView/index'
 import BottomView from '../components/BottomView/index'
 import MapView from '../components/MapView/index'
+import {screenData, mapScatter, wordCloud} from "@/api";
+
 export default {
   name: "Home",
   components: {
     TopView,SalesView,BottomView,MapView
+  },
+  data () {
+    return {
+      reportData: null,
+      wordCloudData: null,
+      mapData: null
+    }
+  },
+  provide() {
+    return {
+      getReportData: this.getReportData,
+      wordCloudData: this.wordCloudData,
+      mapData: this.mapData
+    }
+  },
+  methods: {
+    getReportData() {
+      return this.reportData
+    }
+  },
+  mounted() {
+    screenData().then(response => {
+      this.reportData = response
+    }).catch(error => {
+      console.log(error)
+    })
+    mapScatter().then(response => {
+      this.mapData = response
+    }).catch(error => {
+      console.log(error)
+    })
+    wordCloud().then(response => {
+      this.wordCloudData = response
+    }).catch(error => {
+      console.log(error)
+    })
   }
 }
 </script>

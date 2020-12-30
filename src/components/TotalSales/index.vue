@@ -16,7 +16,7 @@
     </template>
     <template v-slot:footer>
       <span>昨日销售额 </span>
-      <span class="emphasis">￥ 30,000,000</span>
+      <span class="emphasis">￥ {{data}}</span>
     </template>
   </common-card>
 </template>
@@ -26,9 +26,12 @@ import commonCardMixin from '../../mixins/commonCardMixin'
 export default {
   name: 'TotalSales',
   mixins: [commonCardMixin],
-  data() {
-    return {}
-  }
+  computed: {
+    data () {
+      return this.getReportData()
+    }
+  },
+  inject: ['getReportData']
 }
 </script>
 
