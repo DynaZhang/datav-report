@@ -1,5 +1,5 @@
 <template>
-  <common-card title="累计销售额" value="￥ 32,039,165">
+  <common-card title="累计销售额" :value="`￥ ${data.salesToday}`">
     <template>
       <div class="compare-wrapper">
         <div class="compare">
@@ -16,7 +16,7 @@
     </template>
     <template v-slot:footer>
       <span>昨日销售额 </span>
-      <span class="emphasis">￥ {{data}}</span>
+      <span class="emphasis">￥ {{data.salesLastDay | emptyNull}}</span>
     </template>
   </common-card>
 </template>
@@ -28,7 +28,12 @@ export default {
   mixins: [commonCardMixin],
   computed: {
     data () {
-      return this.getReportData()
+      return this.getReportData() ? this.getReportData() : {}
+    }
+  },
+  watch: {
+    data (val) {
+      console.log(val)
     }
   },
   inject: ['getReportData']

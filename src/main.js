@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import FilterList from '@/filters'
 
 import router from './router'
 import Echarts from 'echarts'
@@ -8,6 +9,10 @@ import './plugins/vcharts'
 import VueEcharts from 'vue-echarts'
 
 import './assets/styles/common.scss'
+
+FilterList.forEach(item => {
+  Vue.filter(item.name, item.handler)
+})
 
 Vue.prototype.$echarts = Echarts
 Vue.prototype.$bmap = window.BMapGL
