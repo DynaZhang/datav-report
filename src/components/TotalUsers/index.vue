@@ -1,13 +1,13 @@
 <template>
-  <common-card title="累计用户数" value="1,157,576">
+  <common-card title="累计用户数" :value="reportData.userToday">
     <v-chart :options="chartOption" />
     <template v-slot:footer>
       <div class="total-users-footer">
         <span>日同比 </span>
-        <span class="emphasis">15.66%</span>
+        <span class="emphasis">{{reportData.userGrowthLastDay}}%</span>
         <div class="icon increase" />
         <span class="month">月同比 </span>
-        <span class="emphasis">44.58%</span>
+        <span class="emphasis">{{reportData.userGrowthLastMonth}}%</span>
         <div class="icon decrease" />
       </div>
     </template>
@@ -16,9 +16,10 @@
 
 <script>
 import commonCardMixin from '../../mixins/commonCardMixin'
+import commonDataMixin from "@/mixins/commonDataMixin";
 export default {
   name: 'TotalUsers',
-  mixins: [commonCardMixin],
+  mixins: [commonCardMixin, commonDataMixin],
   data () {
     return {
       chartOption: {
@@ -28,6 +29,7 @@ export default {
           bottom: 0,
           left: 0
         },
+        tooltip: {},
         xAxis: {
           type: 'value',
           show: false

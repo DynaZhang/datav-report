@@ -29,8 +29,8 @@ export default {
   provide() {
     return {
       getReportData: this.getReportData,
-      wordCloudData: this.wordCloudData,
-      mapData: this.mapData
+      getWordCloudData: this.wordCloudData,
+      getMapData: this.mapData
     }
   },
   methods: {
