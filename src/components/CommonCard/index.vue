@@ -21,8 +21,8 @@ export default {
       default: ''
     },
     value: {
-      type: String,
-      default: ''
+      type: [String, Number],
+      required: true
     }
   },
   data() {
