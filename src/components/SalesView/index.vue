@@ -9,10 +9,10 @@
           </el-menu>
           <div class="menu-right">
             <el-radio-group v-model="dateFilter" size="small" style="margin-right: 10px;">
-              <el-radio-button label="今日" :value="0" />
-              <el-radio-button label="本周" :value="1" />
-              <el-radio-button label="本月" :value="2" />
-              <el-radio-button label="本年" :value="3" />
+              <el-radio-button :label="0">今天</el-radio-button>
+              <el-radio-button :label="1">本周</el-radio-button>
+              <el-radio-button :label="2">本月</el-radio-button>
+              <el-radio-button :label="3">今年</el-radio-button>
             </el-radio-group>
             <el-date-picker v-model="dateRange" class="sales-view-date-picker" type="daterange" size="small" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" unlink-panels :picker-options="pickerOption" />
           </div>
@@ -20,11 +20,11 @@
       </template>
       <template>
         <div class="sales-view-chart-wrapper">
-          <v-chart class="chart" :options="chartOption" />
+          <v-chart class="chart" :options="getChartOptions()" />
           <div class="sales-view-list">
             <div class="sales-view-title">排行榜</div>
             <div class="list-wrapper">
-              <div class="list-item" v-for="item in rankData" :key="item.no">
+              <div class="list-item" v-for="item in orderRank" :key="item.no">
                 <div :class="['list-item-no', item.no <= 3 ? 'top-no' : '' ]">{{item.no}}</div>
                 <div class="list-item-name">{{item.name}}</div>
                 <div class="list-item-money">{{item.money}}</div>
@@ -38,12 +38,15 @@
 </template>
 
 <script>
+import commonDataMixin from "@/mixins/commonDataMixin";
+
 export default {
   name: "SalesView",
+  mixins: [commonDataMixin],
   data() {
     return {
       activeIndex: '1',
-      dateFilter: 0,
+      dateFilter: 3,
       dateRange: [],
       pickerOption: {
         shortcuts: [{
@@ -71,8 +74,15 @@ export default {
             picker.$emit('pick', [start, end]);
           }
         }]
-      },
-      chartOption: {
+      }
+    }
+  },
+  methods: {
+    handleSelect(index) {
+      this.activeIndex = index
+    },
+    getChartOptions () {
+      return {
         color: ['#3398DB'],
         title: {
           text: '年度销售额',
@@ -80,12 +90,11 @@ export default {
             fontSize: 12,
             color: '#666'
           },
-          left: 15,
-          top: 20
+          left: 15
         },
         xAxis: {
           type: 'category',
-          data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+          data: this.orderFullYearAxis,
           axisTick: {
             alignWithLabel: true,
             lineStyle: {
@@ -119,7 +128,7 @@ export default {
           {
             name: 'sales',
             type: 'bar',
-            data: [200,250,300,350,300,250,200,250,300,350,300,250],
+            data: this.orderFullYear,
             barWidth: '35%',
             showBackground: true,
             backgroundStyle: {
@@ -138,49 +147,7 @@ export default {
           bottom: 60,
           left: 50
         }
-      },
-      rankData: [
-        {
-          no: 1,
-          name: '麦当劳',
-          money: '333,234'
-        },
-        {
-          no: 2,
-          name: '麦当劳',
-          money: '333,234'
-        },
-        {
-          no: 3,
-          name: '麦当劳',
-          money: '333,234'
-        },
-        {
-          no: 4,
-          name: '麦当劳',
-          money: '333,234'
-        },
-        {
-          no: 5,
-          name: '麦当劳',
-          money: '333,234'
-        },
-        {
-          no: 6,
-          name: '麦当劳',
-          money: '333,234'
-        },
-        {
-          no: 7,
-          name: '麦当劳',
-          money: '333,234'
-        }
-      ]
-    }
-  },
-  methods: {
-    handleSelect(index) {
-      this.activeIndex = index
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import {format, wrapperMoney, wrapperPercentage, wrapperNumber, wrapperArray, wrapperObject, wrapperOriginalNumber} from "@/utils/tools";
 
 export default {
+  inject: ['getReportData', 'getWordCloudData', 'getMapData'],
   computed: {
     reportData() {
       return this.getReportData()
@@ -88,6 +89,5 @@ export default {
     format(v) {
       return format(v)
     }
-  },
-  inject: ['getReportData', 'getWordCloudData', 'getMapData']
+  }
 }

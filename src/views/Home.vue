@@ -29,13 +29,19 @@ export default {
   provide() {
     return {
       getReportData: this.getReportData,
-      getWordCloudData: this.wordCloudData,
-      getMapData: this.mapData
+      getWordCloudData: this.getWordCloudData,
+      getMapData: this.getMapData
     }
   },
   methods: {
     getReportData() {
       return this.reportData
+    },
+    getWordCloudData () {
+      return this.wordCloudData
+    },
+    getMapData () {
+      return this.mapData
     }
   },
   mounted() {
