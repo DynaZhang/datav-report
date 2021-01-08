@@ -74,12 +74,18 @@ export default {
             picker.$emit('pick', [start, end]);
           }
         }]
-      }
+      },
+      chartAxis: [],
+      chartData: []
     }
   },
   methods: {
     handleSelect(index) {
       this.activeIndex = index
+      switch(this.activeIndex) {
+        case '1': this.chartAxis = this.orderFullYearAxis; this.chartData = this.orderFullYear; break;
+        case '2': this.chartAxis = this.userFullYearAxis; this.chartData = this.userFullYear; break;
+      }
     },
     getChartOptions () {
       return {
@@ -149,6 +155,9 @@ export default {
         }
       }
     }
+  },
+  mounted () {
+    this.handleSelect(this.activeIndex)
   }
 }
 </script>
