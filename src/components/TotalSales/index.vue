@@ -16,7 +16,7 @@
     </template>
     <template v-slot:footer>
       <span>昨日销售额 </span>
-      <span class="emphasis">￥ {{salesLastDay}}</span>
+      <span class="emphasis">{{salesLastDay}}</span>
     </template>
   </common-card>
 </template>
